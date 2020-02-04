@@ -1,33 +1,81 @@
-﻿using System.Data.SqlClient;
-using System.Linq;
-using System.Web.Mvc;
-using Users.BusinessLogic;
-using Users.Data;
-using Users.Web.Models;
-
-namespace Users.Web.Controllers
+﻿namespace Users.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using BusinessLogic;
+    using Data;
+    using Models;
+
+    [SimpleFilter]
+    [MyErrorHandler] 
     public class UserController : Controller
     {
-        private readonly IUserRepository _repo;
+        private readonly IUserRepository repo;
 
         public UserController()
         {
-            _repo = new UserRepository(ConnectionManager.GetConnection());
+            this.repo = new UserRepository(ConnectionManager.GetConnection());
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var allUsers = _repo.GetAll();
-            var userListModels = allUsers.Select(x => new UserListViewModel
-            {
-                Id = x.Id,
-                Email = x.Email,
-                UserName = x.Username
-            }).ToList();
+            // entity from database
+            List<User> allUsers = this.repo.GetAll();
 
-            return View(userListModels);
+            // model for view
+            List<UserListViewModel> list = new List<UserListViewModel>();
+
+            foreach (var user in allUsers)
+            {
+                list.Add(new UserListViewModel
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    UserName = user.Username
+                });
+            }
+
+            return this.View(list);
+        }
+
+        [HttpGet]
+        public ActionResult CreateUser()
+        {
+            //try
+            //{
+            //    throw new NotImplementedException();
+            //}
+            //catch (Exception e)
+            //{
+            //    // log error
+
+            //    return this.RedirectToAction("Error", "Home");
+            //}
+
+            // ex
+            throw new NotImplementedException();
+        }
+
+
+        // https://stackify.com/aspnet-mvc-error-handling/
+        // move this in base controller
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            filterContext.ExceptionHandled = true;
+
+            // todo - log error
+
+            filterContext.Result = this.RedirectToAction("Error", "Home");
+
+            // or
+
+            //filterContext.Result = new ViewResult
+            //{
+            //    ViewName = "~/Views/Home/Error.cshtml"
+            //};
         }
     }
 }

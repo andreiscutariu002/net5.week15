@@ -1,29 +1,29 @@
-﻿using System.Data.SqlClient;
-
-namespace Users.Data
+﻿namespace Users.Data
 {
+    using System.Data.SqlClient;
+
     public static class ConnectionManager
     {
         // TODO - keep in configuration file
-        private const string ConnectionString = "Data Source=.; Initial Catalog=week14;Integrated Security=True;";
+        private const string ConnectionString = "Data Source=.; Initial Catalog=Week15;Integrated Security=True;";
 
-        private static SqlConnection _connection;
+        private static SqlConnection connection;
 
         public static SqlConnection GetConnection()
         {
-            if (_connection != null)
+            if (connection != null)
             {
-                return _connection;
+                return connection;
             }
 
-            _connection = new SqlConnection
+            connection = new SqlConnection
             {
                 ConnectionString = ConnectionString
             };
 
-            _connection.Open();
+            connection.Open();
 
-            return _connection;
+            return connection;
         }
     }
 }

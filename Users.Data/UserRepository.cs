@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using Users.BusinessLogic;
-
-namespace Users.Data
+﻿namespace Users.Data
 {
+    using System.Collections.Generic;
+    using System.Data.SqlClient;
+    using BusinessLogic;
+
     public class UserRepository : IUserRepository
     {
-        private readonly SqlConnection _connection;
+        private readonly SqlConnection connection;
 
         public UserRepository(SqlConnection connection)
         {
-            _connection = connection;
+            this.connection = connection;
         }
 
         public List<User> GetAll()
         {
             var list = new List<User>();
 
-            var query = $"select * from users";
+            var query = "select * from users";
             var command = new SqlCommand
             {
                 CommandText = query,
-                Connection = _connection
+                Connection = this.connection
             };
 
             using (var reader = command.ExecuteReader())

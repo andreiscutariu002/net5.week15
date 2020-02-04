@@ -2,6 +2,8 @@
 
 namespace Users.Web.Controllers
 {
+    using System;
+
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -18,8 +20,15 @@ namespace Users.Web.Controllers
 
         public ActionResult Contact()
         {
+            throw new NotImplementedException();
+
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Error()
+        {
             return View();
         }
     }
