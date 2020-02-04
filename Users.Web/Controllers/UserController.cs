@@ -69,10 +69,12 @@
 
             // todo - log error
 
+            // redirect
             filterContext.Result = this.RedirectToAction("Error", "Home");
 
             // or
 
+            // change the returned view
             //filterContext.Result = new ViewResult
             //{
             //    ViewName = "~/Views/Home/Error.cshtml"
