@@ -6,10 +6,11 @@
     using System.Web.Mvc;
     using BusinessLogic;
     using Data;
+    using Filters;
     using Models;
 
     [SimpleFilter]
-    [MyErrorHandler] 
+    [CustomErrorHandler] 
     public class UserController : Controller
     {
         private readonly IUserRepository repo;

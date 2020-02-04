@@ -1,9 +1,9 @@
-﻿namespace Users.Web
+﻿namespace Users.Web.Filters
 {
     using System.Web.Mvc;
 
     // use handler for errors
-    public class MyErrorHandler : FilterAttribute, IExceptionFilter
+    public class CustomErrorHandler : FilterAttribute, IExceptionFilter
     {
         public void OnException(ExceptionContext filterContext)
         {

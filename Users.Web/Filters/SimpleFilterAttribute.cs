@@ -1,6 +1,5 @@
-﻿namespace Users.Web
+﻿namespace Users.Web.Filters
 {
-    using System;
     using System.Web.Mvc;
 
     public class SimpleFilterAttribute : ActionFilterAttribute
