@@ -14,10 +14,12 @@
     public class UserController : Controller
     {
         private readonly IUserRepository repo;
+        private readonly ICityRepository cityRepo;
 
         public UserController()
         {
             this.repo = new UserRepository(ConnectionManager.GetConnection());
+            this.cityRepo = new CityRepository();
         }
 
         [HttpGet]
@@ -43,23 +45,24 @@
         }
 
         [HttpGet]
-        public ActionResult CreateUser()
+        public ActionResult Create()
         {
-            //try
-            //{
-            //    throw new NotImplementedException();
-            //}
-            //catch (Exception e)
-            //{
-            //    // log error
+            var allCities = this.cityRepo.GetAll();
 
-            //    return this.RedirectToAction("Error", "Home");
-            //}
+            this.ViewBag.Cities = allCities;
 
-            // ex
-            throw new NotImplementedException();
+            var s = new SelectList(allCities, "id", "name");
+
+            return this.View();
         }
 
+        [HttpPost]
+        public ActionResult Create(UserCreateViewModel model)
+        {
+            // insert in DB
+
+            return this.View();
+        }
 
         // https://stackify.com/aspnet-mvc-error-handling/
         // move this in base controller

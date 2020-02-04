@@ -4,6 +4,23 @@
     using System.Data.SqlClient;
     using BusinessLogic;
 
+    public class CityRepository : ICityRepository
+    {
+        public List<City> GetAll()
+        {
+            var cities = new List<City>
+            {
+                new City(1, "Iasi"),
+                new City(2, "Vaslui"),
+                new City(3, "Suceava"),
+                new City(4, "Bacau"),
+                new City(5, "Galati")
+            };
+
+            return cities;
+        }
+    }
+
     public class UserRepository : IUserRepository
     {
         private readonly SqlConnection connection;

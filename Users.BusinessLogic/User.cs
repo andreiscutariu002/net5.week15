@@ -14,4 +14,12 @@
 
         public string Street { get; set; }
     }
+
+    public enum Role
+    {
+        Guest,
+        User,
+        Admin,
+        SuperAdmin
+    }
 }

@@ -1,0 +1,41 @@
+﻿@model Users.Web.Models.UserCreateViewModel
+
+    <div>
+        @using (Html.BeginForm("Create", "User", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username)
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.City)
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.DropDownListFor(m => m.CityId,
+                    new SelectList(ViewBag.Cities, "Id", "Name"), new { @class = "form-control"  })
+            </div>
+
+            <div class="form-group">
+                @Html.EnumDropDownListFor(m => m.Role, htmlAttributes: new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Street)
+                @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger" })
+            </div>
+
+            <input type="submit" />
+        }
+    </div>
